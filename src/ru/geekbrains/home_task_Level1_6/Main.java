@@ -4,7 +4,12 @@ import java.io.*;
 
 
 public class Main {
-
+/*
+Метод "склетвающий" файлы в один
+flag = 0 - создаем первую запись из первого файла
+flag = 1 - добавляем данные (склеиваем) из последующих файлов
+Количество "присоедененных" файлов неограничено
+ */
     private static void readAndWriteFile (String path, String fileInputName, String fileOutName, int flag) {
         try {
             FileInputStream fis = new FileInputStream(path + fileInputName);
@@ -20,7 +25,17 @@ public class Main {
             e.printStackTrace();
         }
     }
+/*
+Метод поиска строки в файле
+Алгоритм поиска : строка поиска преобразуется в массив serchChar[], после этого каждый байт из потока buffInputStream
+сравнивается с 0 элементом searchChar.
+Если совпадения нет - читаем следующий байт и цикл повторяется. В случае совпадения читается следующий байт и сравниваем
+с элементом 1 из searchChar. Если true то повторяем чтение и сравнение со следующим элементом serchChar до конца массива.
+Если все элементы массива совпадают с последовательно читаемыми байтами из buffInputStream счетчик совпадений увеличивается на 1
+Если один из элементов не совпадает то вываливаемся наверх и начинаем сравнивать с serchChar[0].
+Возвразаемое значение - (int) количество совпадений
 
+*/
     private static int serchWordInFile (String path, String fileName, String serchWord) {
         int i, countSerch;
         countSerch = 0;
@@ -46,6 +61,12 @@ public class Main {
         }
         return countSerch;
     }
+/*
+Метод поиска строки в папке
+Получаем список фрйлов в папке в массив строк b
+перебирая массив b находим имена файлов с расширением txt и вызываем метод поиска строки в файле
+возвращаемое значение - (int) количество совпадений
+ */
     private static int serchWordInFolder (String path, String serchWord) {
         File folder = new File(path);
         String [] b  = folder.list();

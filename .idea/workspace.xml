@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8856c60f-0e4a-4e57-8bc8-b1bafae5a253" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lesson6/ru/geekbrains/home_task_Level1_6/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lesson6/ru/geekbrains/home_task_Level1_6/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/home_task_Level1_6/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/home_task_Level1_6/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
