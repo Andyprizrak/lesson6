@@ -11,17 +11,10 @@ public class Main {
             byte[] fileDataByte = fis.readAllBytes();
             fis.close();
             FileOutputStream fos;
-            if (flag == 0) {
-                fos = new FileOutputStream(path + fileOutName);
-            }
-               else {
-                 fos = new FileOutputStream(path + fileOutName, true);
-               }
-
-               for (byte b : fileDataByte) {
-                     fos.write(b);
-               }
-             fos.close();
+            if (flag == 0) {fos = new FileOutputStream(path + fileOutName);}
+               else {fos = new FileOutputStream(path + fileOutName, true);}
+            for (byte b : fileDataByte) {fos.write(b);}
+            fos.close();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -41,9 +34,9 @@ public class Main {
                     for (int x = 1; x < serchChars.length; x++) {
                         i = buffInputStream.read();
                         if (i != serchChars[x]) {x=serchChars.length;}
-                        else {
-                            if (x == serchChars.length-1) {countSerch ++;}
-                        }
+                          else {
+                              if (x == serchChars.length-1) {countSerch ++;}
+                          }
                     }
                 }
             }
@@ -52,6 +45,22 @@ public class Main {
             e.printStackTrace();
         }
         return countSerch;
+    }
+    private static int serchWordInFolder (String path, String serchWord) {
+        File folder = new File(path);
+        String [] b  = folder.list();
+        assert b != null;    // ? Разобраться подробнее чем отличается от Exeption
+
+        String fileName;
+        int countSearhWordInFolder = 0;
+
+        for (int i =0; i < b.length; i++) {
+            fileName = b[i];
+            if (fileName.substring(fileName.length() - 3).equals("txt")) {
+                countSearhWordInFolder = countSearhWordInFolder + serchWordInFile(path, fileName, serchWord);
+            }
+        }
+        return countSearhWordInFolder;
     }
 
     public static void main(String[] args) {
@@ -64,20 +73,7 @@ public class Main {
         readAndWriteFile(pathToFile, fileName1, fileNameResalt,0);
         readAndWriteFile(pathToFile, fileName2, fileNameResalt,1);
         System.out.println("В файле: " + fileName1 + " найдено " + serchWordInFile(pathToFile, fileName1, serchinWord) + " совпадений c словом " + serchinWord);
-
-
-
-        File folder = new File(pathToFile);
-        String [] b  = folder.list();
-        assert b != null;    // ? Разобраться подробнее чем отличается от Exeption
-
-        for (String s : b) {
-            System.out.println(s);
-        }
-
-
-
-
+        System.out.println("В папке найдено " + serchWordInFolder(pathToFile,serchinWord) + " совпадений");
 
     }
 }
